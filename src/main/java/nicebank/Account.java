@@ -9,8 +9,12 @@ public class Account {
         this.balance = amount;
 
     }
-    public void deposit(BigDecimal amount) {
+    public void credit(BigDecimal amount) {
         balance = balance.add(amount);
+    }
+
+    public void debit(BigDecimal amount) {
+        balance = balance.subtract(amount);
     }
 
     public Account() {

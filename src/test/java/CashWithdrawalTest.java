@@ -9,7 +9,7 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features/chapter7")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
-@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "CAMELCASE")
+@ConfigurationParameter(key = SNIPPET_TYPE_PROPERTY_NAME, value = "camelcase")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "steps")
-public class DryRunTest {
+public class CashWithdrawalTest {
 }

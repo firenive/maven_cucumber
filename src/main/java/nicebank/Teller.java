@@ -10,6 +10,7 @@ public class Teller {
     }
 
     public void withdrawFrom(Account account, BigDecimal dollars) {
+        account.debit(dollars);
         cashSlot.dispense(dollars);
 
     }
