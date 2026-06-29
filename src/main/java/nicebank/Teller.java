@@ -2,16 +2,6 @@ package nicebank;
 
 import java.math.BigDecimal;
 
-public class Teller {
-    private CashSlot cashSlot;
-    public Teller(CashSlot cashSlot) {
-        this.cashSlot = cashSlot;
-
-    }
-
-    public void withdrawFrom(Account account, BigDecimal dollars) {
-        account.debit(dollars);
-        cashSlot.dispense(dollars);
-
-    }
+public interface Teller {
+    void withdrawFrom(Account account, BigDecimal dollars);
 }
