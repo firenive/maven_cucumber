@@ -1,7 +1,7 @@
 package steps.part2;
 
 import io.cucumber.java.en.When;
-import nicebank.support.KnowsTheDomain;
+import support.KnowsTheDomain;
 
 import java.math.BigDecimal;
 

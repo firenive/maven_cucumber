@@ -1,7 +1,7 @@
 package steps.part2;
 
 import io.cucumber.java.en.Then;
-import nicebank.support.KnowsTheDomain;
+import support.KnowsTheDomain;
 import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;

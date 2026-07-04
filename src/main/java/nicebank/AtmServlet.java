@@ -11,9 +11,12 @@ public class AtmServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println(
-                "<html><head><title>Nice bank ATM</title></head>"
-                + "<body><h1>Welcome to our nice bank</h1></body></html>"
-
+                "<html><head><title>ATM</title></head>" +
+                        "<body><form action=\"/withdraw\" method=\"post\">" +
+                        "<label for=\"amount\">Amount</label>" +
+                        "<input type=\"text\" id=\"amount\" name=\"amount\">" +
+                        "<button type=\"submit\" id=\"withdraw\">Withdraw</button>" +
+                        "</form></body></html>"
         );
     }
 }
