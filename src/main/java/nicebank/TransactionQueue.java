@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class TransactionQueue {
-    private static String MESSAGES_FOLDER = "./messages";
+    private static String MESSAGES_FOLDER = "target/messages";
     private static String MESSAGE_FILE_PATH = "%s/%03d";
     private int nextId = 1;
 

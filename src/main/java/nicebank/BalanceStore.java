@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class BalanceStore {
-    private static String BALANCE_FILE_PATH = "./balance";
+    private static String BALANCE_FILE_PATH = "target/balance";
 
     public static void clear() {
         new File(BALANCE_FILE_PATH).delete();
