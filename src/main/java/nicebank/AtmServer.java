@@ -14,6 +14,7 @@ public class AtmServer {
         server.setHandler(context);
         context.addServlet(new ServletHolder(new WithdrawalServlet(cashSlot, account)), "/withdraw");
         context.addServlet(new ServletHolder(new AtmServlet()), "/");
+        context.addServlet(new ServletHolder(new BalanceServlet(account)), "/balance");
     }
     public void start() throws Exception {
         server.start();
@@ -25,7 +26,7 @@ public class AtmServer {
     }
 
     public static void main(String[] args) throws Exception {
-         new AtmServer(9988, new CashSlot(), new Account()).start();
+         new AtmServer(8887, new CashSlot(), new Account()).start();
     }
     // mvn compile exec:java -Dexec.mainClass=nicebank.AtmServer
 

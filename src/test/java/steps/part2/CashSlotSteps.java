@@ -18,4 +18,10 @@ public class CashSlotSteps {
         Assertions.assertEquals(amount, helper.getCashSlot().getContents(), "Incorrect amount dispensed");
     }
 
+    @Then("nothing should be dispensed")
+    public void nothingShouldBeDispensed() {
+        Assertions.assertEquals(BigDecimal.ZERO,helper.getCashSlot().getContents(),
+                "Expected no cash to be dispensed");
+
+    }
 }

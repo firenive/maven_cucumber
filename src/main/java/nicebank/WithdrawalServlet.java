@@ -17,6 +17,15 @@ public class WithdrawalServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Teller teller = new AutomatedTeller(cashSlot);
         BigDecimal amount = new BigDecimal(request.getParameter("amount"));
+        if (!account.hasSufficientFunds(amount)) {
+            response.setContentType("text/html");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().println(
+                    "<html><head><title>Nice Bank ATM</title></head>" +
+                            "<body><p id=\"message\">Insufficient funds</p></body></html>"
+            );
+            return;
+        }
         teller.withdrawFrom(account, amount);
 
         response.setContentType("text/html");

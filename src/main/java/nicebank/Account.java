@@ -26,4 +26,8 @@ public class Account {
     public BigDecimal getBalance() {
         return balance;
     }
+
+    public boolean hasSufficientFunds(BigDecimal amount) {
+        return balance.compareTo(amount) >= 0;
+    }
 }

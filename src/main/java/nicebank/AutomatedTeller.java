@@ -10,6 +10,7 @@ public class AutomatedTeller implements Teller {
     }
 
     public void withdrawFrom(Account account, BigDecimal dollars) {
+        if (!account.hasSufficientFunds(dollars)) return;
         account.debit(dollars);
         cashSlot.dispense(dollars);
 

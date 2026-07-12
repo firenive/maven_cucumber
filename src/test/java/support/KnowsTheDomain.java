@@ -33,4 +33,11 @@ public class KnowsTheDomain {
         }
         return webDriver;
     }
+
+    public AtmUserInterface getAtmUserInterface() {
+        if (teller == null) {
+            teller = new AtmUserInterface(getWebDriver());
+        }
+        return (AtmUserInterface) teller;
+    }
 }

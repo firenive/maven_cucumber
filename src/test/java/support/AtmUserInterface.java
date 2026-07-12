@@ -14,12 +14,23 @@ public class AtmUserInterface implements Teller {
         this.webDriver = webDriver;
     }
 
+    public boolean containsMessage(String message) {
+        return webDriver.findElement(By.id("message"))
+                .getText()
+                .contains(message);
+    }
+
 
     @Override
     public void withdrawFrom(Account account, BigDecimal dollars) {
         webDriver.get("http://localhost:" + ServerHooks.PORT);
-        webDriver.findElement(By.id("amount")).sendKeys(dollars.toPlainString());
-        webDriver.findElement(By.id("withdraw")).click();
+        String buttonId = "withdraw" + dollars.stripTrailingZeros().toPlainString();
+        webDriver.findElement(By.id(buttonId)).click();
+
+    }
+    public void checkBalance(Account account) {
+        webDriver.get("http://localhost:" + ServerHooks.PORT);
+        webDriver.findElement(By.id("checkBalance")).click();
     }
 
 }
