@@ -19,8 +19,15 @@ public class AccountSteps {
 
 
     @And("the balance of my account should be ${bigdecimal}")
-    public void theBalanceOfMyAccountShouldBe$(BigDecimal amount) {
+    public void theBalanceOfMyAccountShouldBe$(BigDecimal amount) throws InterruptedException {
+        int timeoutMilliSecs = 3000;
+        int pollIntervalMilliSecs = 100;
+        while (!helper.getMyAccount().getBalance().equals(amount) && timeoutMilliSecs > 0) {
+            Thread.sleep(pollIntervalMilliSecs);
+            timeoutMilliSecs -=pollIntervalMilliSecs;
+        }
         Assertions.assertEquals(amount, helper.getMyAccount().getBalance(),
                 "Incorrect account balance");
+
     }
 }

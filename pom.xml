@@ -16,6 +16,7 @@
         <selenium.version>4.45.0</selenium.version>
         <junit.version>5.14.0</junit.version>
         <jetty.version>12.1.10</jetty.version>
+        <commons-io.version>2.22.0</commons-io.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -82,6 +83,12 @@
             <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
 
     </dependencies>

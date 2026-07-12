@@ -3,6 +3,7 @@ package nicebank;
 import java.math.BigDecimal;
 
 public class Account {
+    private TransactionQueue queue = new TransactionQueue();
     private BigDecimal balance;
 
     public void setBalance(BigDecimal amount) {
@@ -10,11 +11,11 @@ public class Account {
 
     }
     public void credit(BigDecimal amount) {
-        balance = balance.add(amount);
+        queue.write("+" + amount.toString());
     }
 
     public void debit(BigDecimal amount) {
-        balance = balance.subtract(amount);
+        queue.write("-" + amount.toString());
     }
 
     public Account() {
@@ -24,6 +25,6 @@ public class Account {
 
 
     public BigDecimal getBalance() {
-        return balance;
+        return BalanceStore.getBalance();
     }
 }
