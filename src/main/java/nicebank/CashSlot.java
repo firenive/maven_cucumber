@@ -1,5 +1,4 @@
 package nicebank;
-
 import java.math.BigDecimal;
 
 public class CashSlot {

@@ -1,15 +1,18 @@
 package support;
 
+import com.google.inject.Inject;
 import hooks.ServerHooks;
+import io.cucumber.guice.ScenarioScoped;
 import nicebank.Account;
 import nicebank.Teller;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.math.BigDecimal;
-
+@ScenarioScoped
 public class AtmUserInterface implements Teller {
     private final WebDriver webDriver;
+    @Inject
     public AtmUserInterface(MyWebDriver myWebDriver) {
         this.webDriver = myWebDriver.getDriver();
     }

@@ -1,11 +1,12 @@
 package hooks;
 
+import io.cucumber.guice.ScenarioScoped;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import nicebank.Account;
 import nicebank.TransactionQueue;
 import org.javalite.activejdbc.Base;
-
+@ScenarioScoped
 public class ResetHooks {
     @Before(order = 1)
     public void reset() {

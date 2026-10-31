@@ -21,6 +21,7 @@
         <liquibase.version>5.0.4</liquibase.version>
         <mysql.connector.version>26.7.0</mysql.connector.version>
         <activejdbc.version>3.5-j11</activejdbc.version>
+        <guice.version>7.0.0</guice.version>
     </properties>
 
     <dependencies>
@@ -43,19 +44,18 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- Source: https://mvnrepository.com/artifact/org.picocontainer/picocontainer -->
-        <dependency>
-            <groupId>org.picocontainer</groupId>
-            <artifactId>picocontainer</artifactId>
-            <version>2.15</version>
-            <scope>compile</scope>
-        </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-picocontainer</artifactId>
+            <artifactId>cucumber-guice</artifactId>
             <version>${cucumber.version}</version>
-            <scope>compile</scope>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>${guice.version}</version>
+        <scope>test</scope>
         </dependency>
 
         <dependency>

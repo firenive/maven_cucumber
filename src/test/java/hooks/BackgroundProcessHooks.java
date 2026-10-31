@@ -1,9 +1,10 @@
 package hooks;
 
+import io.cucumber.guice.ScenarioScoped;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import nicebank.TransactionProcessor;
-
+@ScenarioScoped
 public class BackgroundProcessHooks {
     private Thread transactionProcessorThread;
 
