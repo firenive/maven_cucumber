@@ -120,6 +120,7 @@
                     <useFile>false</useFile>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.javalite</groupId>
                 <artifactId>activejdbc-instrumentation</artifactId>
@@ -137,33 +138,6 @@
                                 ${project.build.outputDirectory}
                             </outputDirectory>
                         </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>instrument-test-classes</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.testOutputDirectory}
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.javalite</groupId>
-                <artifactId>activejdbc-instrumentation</artifactId>
-                <version>${activejdbc.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
