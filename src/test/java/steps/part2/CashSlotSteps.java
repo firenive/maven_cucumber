@@ -1,21 +1,21 @@
 package steps.part2;
 
 import io.cucumber.java.en.Then;
-import support.KnowsTheDomain;
+import nicebank.CashSlot;
 import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;
 
 public class CashSlotSteps {
-    KnowsTheDomain helper;
+    CashSlot cashSlot;
 
-    public CashSlotSteps(KnowsTheDomain helper) {
-        this.helper = helper;
+    public CashSlotSteps(CashSlot cashSlot) {
+        this.cashSlot = cashSlot;
     }
 
     @Then("${bigdecimal} should be dispensed")
     public void $ShouldBeDispensed(BigDecimal amount) {
-        Assertions.assertEquals(amount, helper.getCashSlot().getContents(), "Incorrect amount dispensed");
+        Assertions.assertEquals(amount, cashSlot.getContents(), "Incorrect amount dispensed");
     }
 
 }

@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 
 public class AtmUserInterface implements Teller {
     private final WebDriver webDriver;
-    public AtmUserInterface(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    public AtmUserInterface(MyWebDriver myWebDriver) {
+        this.webDriver = myWebDriver.getDriver();
     }
 
 

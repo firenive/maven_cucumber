@@ -1,18 +1,22 @@
 package steps.part2;
 
 import io.cucumber.java.en.When;
-import support.KnowsTheDomain;
+import nicebank.Teller;
+import support.AtmUserInterface;
+import support.TestAccount;
 
 import java.math.BigDecimal;
 
 public class TellerSteps {
-    KnowsTheDomain helper;
+    Teller teller;
+    TestAccount account;
 
-    public TellerSteps(KnowsTheDomain helper) {
-        this.helper = helper;
+    public TellerSteps(AtmUserInterface teller, TestAccount account) {
+       this.teller = teller;
+       this.account = account;
     }
     @When("I withdraw ${bigdecimal}")
     public void iWithdraw$(BigDecimal amount) {
-        helper.getTeller().withdrawFrom(helper.getMyAccount(), amount);
+        teller.withdrawFrom(account.getAccount(), amount);
     }
 }

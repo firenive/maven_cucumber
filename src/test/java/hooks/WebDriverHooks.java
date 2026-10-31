@@ -6,23 +6,23 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import support.KnowsTheDomain;
+import support.MyWebDriver;
 
 public class WebDriverHooks {
-    private final KnowsTheDomain helper;
-    public WebDriverHooks(KnowsTheDomain helper) {
-        this.helper = helper;
+    private final MyWebDriver myWebDriver;
+    public WebDriverHooks(MyWebDriver myWebDriver) {
+        this.myWebDriver = myWebDriver;
     }
     @After
     public void finish(Scenario scenario) {
-        WebDriver webDriver = helper.getWebDriver();
+        WebDriver webDriver = myWebDriver.getDriver();
         try {
             byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot,"image/png", "screenshot");
         } catch (WebDriverException e) {
             System.err.println(e.getMessage());
         } finally {
-            webDriver.quit();
+            myWebDriver.quit();
         }
     }
 }

@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 public class CashSlot {
     private BigDecimal contents;
 
+
     public BigDecimal getContents() {
         return contents;
     }

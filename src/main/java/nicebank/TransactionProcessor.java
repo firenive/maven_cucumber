@@ -1,31 +1,47 @@
 package nicebank;
 
+import org.javalite.activejdbc.Base;
+
 import java.math.BigDecimal;
 
 public class TransactionProcessor {
     private TransactionQueue queue = new TransactionQueue();
-    private String message;
-    private boolean isCreditTransaction(String message) {
-        return !message.startsWith("-");
-    }
 
     public void process() {
-        do {
-             message = queue.read();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (!message.isEmpty()) {
-                BigDecimal balance = BalanceStore.getBalance();
-                BigDecimal transactionAmount = new BigDecimal(message.substring(1));
-                if (isCreditTransaction(message)) {
-                    BalanceStore.setBalance(balance.add(transactionAmount));
-                } else {
-                    BalanceStore.setBalance(balance.subtract(transactionAmount));
+        if (!Base.hasConnection()) {
+            Base.open("com.mysql.cj.jdbc.Driver",
+                    "jdbc:mysql://localhost:3306/bank",
+                    System.getenv("DB_USER"),
+                    System.getenv("DB_PASSWORD"));
+        }
+        try {
+            while (!Thread.currentThread().isInterrupted()) {
+                String message = queue.read();
+                if (message.isEmpty()) {
+                    Thread.sleep(100);
+                    continue;
                 }
+                processMessage(message);
             }
-        } while (true);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    private void processMessage(String message) {
+        String[] parts = message.split(",", 2);
+        if (parts.length != 2) {
+            throw new IllegalArgumentException(
+                    "Incorrect transaction message: " + message
+            );
+        }
+        BigDecimal transactionAmount = new BigDecimal(parts[0]);
+        int accountNumber = Integer.parseInt(parts[1]);
+        Account account = Account.findFirst(
+                "number = ?", accountNumber);
+        if (account == null) {
+            throw  new IllegalStateException("Account not found: " + accountNumber);
+        }
+        BigDecimal newBalance = account.getBalance().add(transactionAmount);
+        account.setBalance(newBalance);
     }
 }

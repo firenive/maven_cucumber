@@ -2,19 +2,19 @@ package steps.part2;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import support.KnowsTheDomain;
+import support.TestAccount;
 import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;
 
 public class AccountSteps {
-    KnowsTheDomain helper;
-    public AccountSteps(KnowsTheDomain helper) {
-        this.helper = helper;
+    private final TestAccount account;
+    public AccountSteps(TestAccount account) {
+        this.account = account;
     }
     @Given("my account has been credited with ${bigdecimal}")
     public void myAccountHasBeenCreditedWith$(BigDecimal amount) {
-        helper.getMyAccount().credit(amount);
+        account.getAccount().credit(amount);
     }
 
 
@@ -22,11 +22,11 @@ public class AccountSteps {
     public void theBalanceOfMyAccountShouldBe$(BigDecimal amount) throws InterruptedException {
         int timeoutMilliSecs = 3000;
         int pollIntervalMilliSecs = 100;
-        while (!helper.getMyAccount().getBalance().equals(amount) && timeoutMilliSecs > 0) {
+        while (!account.getAccount().getBalance().equals(amount) && timeoutMilliSecs > 0) {
             Thread.sleep(pollIntervalMilliSecs);
             timeoutMilliSecs -=pollIntervalMilliSecs;
         }
-        Assertions.assertEquals(amount, helper.getMyAccount().getBalance(),
+        Assertions.assertEquals(amount, account.getAccount().getBalance(),
                 "Incorrect account balance");
 
     }
