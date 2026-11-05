@@ -1,17 +1,14 @@
 package steps.part2;
 
-import com.google.inject.Inject;
-import io.cucumber.guice.ScenarioScoped;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import support.TestAccount;
 import org.junit.jupiter.api.Assertions;
 
 import java.math.BigDecimal;
-@ScenarioScoped
+
 public class AccountSteps {
     private final TestAccount account;
-    @Inject
     public AccountSteps(TestAccount account) {
         this.account = account;
     }
